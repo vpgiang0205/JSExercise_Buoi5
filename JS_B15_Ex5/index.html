@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <!-- 1 -->
+          <div class="card my-4">
+            <div class="card-header">Quản lý tuyển sinh</div>
+            <div class="card-body">
+              <div class="form-group">
+                <input
+                  id="diemChuan"
+                  class="form-control my-4"
+                  type="text"
+                  placeholder="Điểm chuẩn"
+                />
+
+                <select class="form-control my-4" id="khuVuc" name="">
+                  <option value="0">Chọn khu vực</option>
+                  <option value="2">Khu vực A cộng thêm 2 điểm</option>
+                  <option value="1">Khu vực B cộng thêm 1 điểm</option>
+                  <option value="0.5">Khu vực C cộng thêm 0.5 điểm</option>
+                </select>
+                <select class="form-control my-4" id="doiTuong" name="">
+                  <option value="0">Chọn đối tượng</option>
+                  <option value="2.5">Đối tượng 1 cộng thêm 2.5 điểm</option>
+                  <option value="1.5">Đối tượng 2 cộng thêm 1.5 điểm</option>
+                  <option value="1">Đối tượng 3 cộng thêm 1 điểm</option>
+                </select>
+                <input
+                  id="diemMon_1"
+                  class="form-control my-4"
+                  type="number"
+                  placeholder="Điểm môn thứ 1"
+                />
+                <input
+                  id="diemMon_2"
+                  class="form-control my-4"
+                  type="number"
+                  placeholder="Điểm môn thứ 2"
+                />
+                <input
+                  id="diemMon_3"
+                  class="form-control my-4"
+                  type="number"
+                  placeholder="Điểm môn thứ 3"
+                />
+              </div>
+              <button class="btn btn-success" onclick="clickBtnTinhDiem()">
+                Tính
+              </button>
+            </div>
+            <div class="card-footer text-muted" id="footerTuyenSinh"></div>
+          </div>
+          <!-- 2 -->
+          <div class="card my-4">
+            <div class="card-header">Tính tiền điện</div>
+            <div class="card-body">
+              <div class="form-group">
+                <input
+                  type="text"
+                  name=""
+                  id="nameElec"
+                  class="form-control my-4"
+                  placeholder="Nhập Họ Tên"
+                  aria-describedby="helpId"
+                />
+                <input
+                  type="number"
+                  name=""
+                  id="soKwDien"
+                  class="form-control my-4"
+                  placeholder="Nhập Số Kw Điện"
+                  aria-describedby="helpId"
+                />
+              </div>
+              <button class="btn btn-success" onclick="btnTinhTienDien()">
+                Tính
+              </button>
+            </div>
+            <div class="card-footer text-muted" id="ShowKetQuaDien"></div>
+          </div>
+          <!-- 3 -->
+          <div class="card my-4">
+            <form class="form-group">
+            <div class="card-header">Tính thuế thu nhập cá nhân</div>
+            <div class="card-body">
+             
+                <input
+                  class="form-control my-4"
+                  id="inputUserName"
+                  type="text"
+                  name=""
+                  placeholder="Nhập Họ Tên:"
+                  aria-describedby="helpId"
+                />
+                <input
+                  class="form-control my-4"
+                  id="inputSalary"
+                  type="number"
+                  name=""
+                  placeholder="Tổng thu nhập năm:"
+                  aria-describedby="helpId"
+                />
+                <input
+                  class="form-control my-4"
+                  id="inputDependent"
+                  type="number"
+                  name=""
+                  placeholder="Số người phụ thuộc"
+                  aria-describedby="helpId"
+                />
+                <button id="btnTax" type="button" class="btn btn-success">
+                  Tính thuế
+                </button>
+              
+            </div>
+            <div id="txtTax" class="card-footer text-muted"></div>
+          </div>
+          </form>
+          <!-- 4 -->
+          <div class="card my-4">
+            <div class="card-header">Tính hóa đơn cáp</div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="maKhachHang">Mã khách hàng:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="maKhachHang"
+                  onchange="calculateBill()"
+                />
+              </div>
+              <div class="form-group">
+                <label for="loaiKhachHang">Loại khách hàng:</label>
+                <select
+                  class="form-control"
+                  id="loaiKhachHang"
+                  onchange="toggleConnectionInput(); calculateBill()"
+                >
+                  <option value="nhaDan">Nhà dân</option>
+                  <option value="doanhNghiep">Doanh nghiệp</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="connection"
+                  onchange="calculateBill()"
+                  style="display: none"
+                  placeholder="Số kết nối"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="channel"
+                  onchange="calculateBill()"
+                  placeholder="Số kênh cao cấp"
+                />
+              </div>
+              <button class="btn btn-success" onclick="tinhHoaDonCap()">
+                Tính
+              </button>
+            </div>
+            <div class="card-footer text-muted" id="totalBill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
